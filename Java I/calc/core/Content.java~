@@ -1,0 +1,22 @@
+package calc.core;
+
+
+import java.io.Serializable;
+
+public abstract class Content implements Serializable { 	
+	private static final long serialVersion=12345673456432L;
+	private Cell cell;
+	
+	
+	
+	public void setCelula(Cell cell){
+		this.cell = cell;
+	}
+	
+	public Cell getCelula(){
+		return this.cell;
+	}
+		
+	public abstract Integer getContent();
+	public abstract String toString();
+}

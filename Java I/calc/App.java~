@@ -1,0 +1,39 @@
+package calc;
+
+import static pt.utl.ist.po.ui.UserInteraction.IO;
+import pt.utl.ist.po.ui.Menu;
+import pt.utl.ist.po.ui.Form;
+
+import calc.core.FolhaCalc;
+import calc.menu.CalcMenu;
+
+import java.io.*;
+/**
+ * This is a sample FolhaDeCalculo.
+ * 
+ @author :		group 60
+ *						Bernardo Graça 76531
+ *						Vasco Fernandes 76462
+ *						Rui Furtado 76379
+ * @version 1.0
+ */
+
+public class App {
+	/**
+	 * @param args
+	 */
+	public static void main(String args[]) {
+		FolhaCalc folha  = null;
+					
+		/* Read an Import file, if any */
+		String filename = System.getProperty("Import");
+		if (filename != null) folha.parseInputFile(filename);
+
+		/* Start the user interface with the Bank instance */
+		IO.setTitle(folha.getName());
+		Menu m = new CalcMenu(folha);
+		m.open();
+		IO.close();
+	}
+}
+

@@ -1,0 +1,21 @@
+package calc.core;
+import calc.core.*;
+import pt.utl.ist.po.ui.*;
+
+public class Mul extends FuncBin{
+	
+	public Mul(Argumento arg1, Argumento arg2, String nomeFuncao){
+		this.v1=arg1;
+		this.v2=arg2;
+		this.nomeFunc=nomeFuncao;
+	}
+	
+	@Override
+	@SuppressWarnings("nls")
+	public Integer compute(){
+		if(this.v1.getValue() == null || this.v2.getValue() == null)
+			return null;
+		else
+			return this.v1.getValue()*this.v2.getValue();
+		}
+}

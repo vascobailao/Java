@@ -1,0 +1,46 @@
+package calc;
+
+import static pt.utl.ist.po.ui.UserInteraction.IO;
+import pt.utl.ist.po.ui.Menu;
+import pt.utl.ist.po.ui.Form;
+
+import calc.core.FolhaCalc;
+import calc.menu.CalcMenu;
+
+import java.io.*;
+/**
+ * This is a sample FolhaDeCalculo.
+ * 
+ @author :		group 60
+ *						Bernardo Graça 76531
+ *						Vasco Fernandes 76462
+ *						Rui Furtado 76379
+ * @version 1.0
+ */
+
+public class Calc {
+	
+	private FolhaCalc _folha;
+	/**
+	 * @param args
+	 */
+	public Calc(){
+		_folha=new FolhaCalc;
+	 
+	public FolhaCalc getFolha(){
+		return _folha;
+	}
+	
+	public FolhaCalc setFolha(FolhaCalc folha){
+			_folha=folha;
+	}
+	
+	
+	public static void main(String args[]) {
+		FolhaCalc folha  = null;
+		Calc app=new Calc();
+		Menu m = new CalcMenu(app);
+		m.open();
+	}
+}
+

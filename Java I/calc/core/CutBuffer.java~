@@ -1,0 +1,36 @@
+package calc.core;
+
+import java.util.*;
+import java.io.Serializable;
+
+
+public class CutBuffer implements Serializable{
+	private static final long serial= 987654321234567L;
+	private ArrayList<Content> buffer;
+	
+	public CutBuffer(){
+		this.buffer=new ArrayList<Content>();
+	}
+	
+	public ArrayList<Content> getCutBuffer(){
+		return this.buffer;
+	}
+	public Content getBuffer(int cont){
+		if(buffer.isEmpty())
+			return null;
+		else
+			return this.buffer.get(cont);
+	}
+	
+	public void put(Content conteudo){
+		this.buffer.add(conteudo);
+	}
+	
+	public void tira(){
+		this.buffer.clear();
+	}
+}
+	
+
+		
+			

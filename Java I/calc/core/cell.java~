@@ -1,0 +1,30 @@
+package calc.core;
+
+import java.io.Serializable;
+import java.util.*;
+
+public class Cell implements Serializable {
+
+	private final long id=1234354543467L;
+	private int line;
+	private int column;
+	
+	public Cell (int line, int column){
+		this.line= line;
+		this.column= column;
+	}
+	public int getLine() {
+		return this.line;
+	}
+		
+	public int getColumn() {
+		return this.column;
+	}
+		
+	public boolean equals(Object cell1) {
+		return (cell1 instanceof cell)
+			&& (cell1.getLine()==this.line) && (cell1.getColumn()==this.column);
+				
+		
+
+}

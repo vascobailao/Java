@@ -1,0 +1,62 @@
+package calc.menu.Menuedit;
+
+import pt.utl.ist.po.ui.Command;
+import pt.utl.ist.po.ui.Form;
+import pt.utl.ist.po.ui.InputString;
+import pt.utl.ist.po.ui.Display;
+import pt.utl.ist.po.ui.InvalidOperation;
+import java.io.IOException;
+import calc.textui.*;
+import calc.core.*;
+import calc.textui.edit.*;
+
+public class Show extends Command<Calc>
+{
+		/**
+     * Constructor for class CalcMenu
+     *
+     * @param folha represents the FolhaDeCalculo.
+gs to.
+     */
+	public Show(Calc app)	
+	{
+		super(MenuEntry.SHOW, app);
+	}
+	
+	public final void execute() throws InvalidOperation {
+		Form f = new Form(title());
+		InputString endereco = new InputString(f, Message.addressRequest());
+		f.parse();
+		int[]enderecos;
+		try{
+			enderecos=Parser.parseEndereco(endereco.value());
+			if(enderecos.length==2){
+				Display d= new Display(title());
+				d.add(enderecos[0]+";"+enderecos[1]+"|");
+				if(entity().getFolha().getMatriz().getCelula(enderecos[0],enderecos[1]).getContent()==null){}
+				else{
+					d.add(entity().getFolha().getMatriz().getCelula(enderecos[0],enderecos[1]).getContent().toString());
+				}
+				d.display();
+			}
+			else{
+				Int intervalo=new Int(enderecos,entity().getFolha().getMatriz());
+			
+				for(Cell auxiliar : intervalo.getIntervalo()){
+					Display d= new Display(title());
+					d.add(auxiliar.getLine()+";"+auxiliar.getColumn()+"|");
+					if(entity().getFolha().getMatriz().getCelula(auxiliar.getLine(),auxiliar.getColumn()).getContent()==null){}
+					else{
+						d.add(entity().getFolha().getMatriz().getCelula(auxiliar.getLine(),auxiliar.getColumn()).getContent().toString());
+					}
+					d.display();	
+				}
+			}
+		}
+		catch(Exception e){
+			throw new InvalidCellRange(endereco.value());
+		}
+	}
+}
+			
+			

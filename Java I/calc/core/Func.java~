@@ -1,0 +1,15 @@
+package calc.core;
+
+
+public abstract class Func extends Content {
+		public abstract Integer compute ();
+		public abstract String toString();
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+package calc.menu.Calcmenu;
+
+import pt.utl.ist.po.ui.Command;
+import pt.utl.ist.po.ui.InputString;
+import pt.utl.ist.po.ui.Form;
+import pt.utl.ist.po.ui.Display;
+import pt.utl.ist.po.ui.InvalidOperation;
+
+import java.io.*;
+import calc.core.*;
+import calc.textui.*;
+import calc.textui.main.*;
+
+
+public class Save extends Command<Calc>
+{
+	public Save(Calc app)	
+	{
+		super(MenuEntry.SAVE, app);
+	}
+	
+	public final void execute() throws InvalidOperation {
+		String atual;
+		if (entity().getFolha().getName() == null){
+			Form f = new Form(title());
+			InputString nomeFicheiro = new InputString(f,Message.newSaveAs());
+			f.parse();
+			atual=nomeFicheiro.value();
+			entity().getFolha().setName(atual);
+		}
+		else
+			atual=entity().getFolha().getName();
+		try {
+			entity().getFolha().save(atual);
+		} 
+		catch (IOException e) {
+			throw new InvalidOperation(e.toString());
+		}
+	}
+}
+			
+			

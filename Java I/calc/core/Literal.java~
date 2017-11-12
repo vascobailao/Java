@@ -1,0 +1,27 @@
+package calc.core;
+
+import java.util.*;
+
+public class Literal extends Content implements Argumento {
+		private int value;
+		
+		public Literal(String value){
+				this.value = Integer.parseInt(value);
+		}
+		
+		@Override
+		public String toString(){
+			return ""+ this.value;
+		}
+		
+		public Integer getContent(){
+				return this.value;
+		}
+		public Integer getValue(){
+				return getContent();	
+		}
+}
+
+
+
+

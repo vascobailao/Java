@@ -1,0 +1,65 @@
+package calc.core;
+
+	/**
+   * Class FuncBin, with their methods and construtors 
+   * 
+ 	 *@author :		group 60
+	 *						Bernardo Graça 76531
+	 *						Vasco Fernandes 76462
+	 *						Rui Furtado 76379
+	 * @version 1.0
+	 */
+
+public abstract class FuncBin extends Func{
+	
+	public Argumento v1;
+	public Argumento v2;
+	public String nomeFunc;
+	
+	/**
+	 *@param String nomeFunc, this method allows set a name to the current Func
+	 */	
+	
+	public void setNomeFunc(String nomeFunc){
+		this.nomeFunc=nomeFunc;
+	}
+	
+	/**
+	 *@return, this method access to a name to the current Func
+	 */	
+	
+	public String getNomeFuncao(){
+		return this.nomeFunc;
+	}
+		
+	/**
+	 *@return, this method return the resulte of compute()
+	 */	
+	
+	public Integer getContent(){
+		return compute();
+	}
+	
+	/**
+	 *@return, null if any result of compute is null, and the result otherwise
+	 */
+	
+	@Override
+	@SuppressWarnings("nls")
+	public String toString(){
+		String argumento1=this.v1.toString();	
+		String argumento2=this.v2.toString();
+		if(argumento1.contains("=")){
+			String[] aux1=argumento1.split("=");
+			argumento1=aux1[1];
+		}
+		if(argumento2.contains("=")){
+			String[] aux2=argumento2.split("=");
+			argumento2=aux2[1];
+		}
+		if(compute()==null)
+			return "#VALUE="+this.nomeFunc+"("+argumento1+","+argumento2+")";
+		else
+			return compute()+"="+this.nomeFunc+"("+argumento1+","+argumento2+")";
+	}
+}

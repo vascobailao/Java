@@ -1,0 +1,31 @@
+package calc.core;
+
+
+
+public abstract class FuncInt extends Func{
+
+	public String k1;
+	public String nomeFunc;
+	public Matriz aux;
+	
+
+	
+	public void setNomeFunc(String nomeFunc){
+		this.nomeFunc=nomeFunc;
+	}
+	
+	public String getNomeFuncao(){
+		return this.nomeFunc;
+	}
+	
+	public Integer getContent(){
+		return compute();
+	}
+	
+	public String toString(){
+		int [] intervalo=Parser.parseIntervalo(this.k1);
+		if(compute()==null)
+			return "#VALUE="+this.nomeFunc+"("+intervalo[0]+";"+intervalo[1]+":"+intervalo[2]+";"+intervalo[3]+")";
+		return compute()+"="+this.nomeFunc+"("+intervalo[0]+";"+intervalo[1]+":"+intervalo[2]+";"+intervalo[3]+")";
+	}
+}

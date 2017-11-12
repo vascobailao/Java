@@ -1,0 +1,35 @@
+package calc.core;
+
+import java.util.*;
+
+
+public class Prd extends FuncInt{	
+	public Prd(String intervalo, String nomeFuncao, Matriz auxiliar){
+			this.k1=intervalo;
+			this.nomeFunc=nomeFuncao;
+			this.aux=auxiliar;
+		}
+		
+		
+	@Override
+	@SuppressWarnings("nls")
+	public Integer compute(){
+		int[] enderecos=Parser.parseIntervalo(this.k1);
+		Int intervalo=new Int(enderecos,this.aux);
+		int fim=1;
+		int iteracoes=0;
+		for(Cell auxiliar : intervalo.getIntervalo()){
+			if(auxiliar.getContent()==null){
+				return null;
+			}
+			else{
+				String cont=auxiliar.getContent().toString();
+				String resultado=Parser.parsePartir(cont);
+				int valor=Integer.parseInt(resultado);
+				fim*=valor;
+				iteracoes++;
+			}
+		}
+		return fim;
+	}	
+}	

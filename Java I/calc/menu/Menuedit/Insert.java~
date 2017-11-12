@@ -1,0 +1,61 @@
+package calc.menu.Menuedit;
+
+import pt.utl.ist.po.ui.*;
+
+import java.io.IOException;
+import calc.textui.*;
+import calc.core.*;
+import calc.textui.edit.*;
+
+/**
+ * This class represents the fifth command of the MenuEdit for FolhaDeCalculo.
+ *
+ * @author :	group 60
+ *						Bernardo Graça 76531
+ *						Vasco Fernandes 76462
+ *						Rui Furtado 76379
+ * @version 1.0
+ */
+
+public class Insert extends Command<Calc>
+{
+		/**
+     * Constructor for class CalcMenu
+     *
+     * @param app represents the FolhaDeCalculo.
+     */
+     
+	public Insert(Calc app)	
+	{
+		super(MenuEntry.INSERT, app);
+	}
+	
+	public final void execute() throws InvalidOperation{
+		Form f = new Form(title());
+		InputString posicao = new InputString(f, Message.addressRequest());
+		InputString content  = new InputString(f, Message.contentsRequest());
+		f.parse(); 
+		Content aux;
+		int[]enderecos;
+		try{
+			enderecos=Parser.parseEndereco(posicao.value());
+			if(enderecos.length==2){
+				aux=Parser.parseConteudo(entity().getFolha(), content.value());
+				entity().getFolha().getMatriz().insereCell(enderecos[0],enderecos[1],aux);
+			}
+			else{
+				Int intervalo=new Int(enderecos,entity().getFolha().getMatriz());
+					for(Cell auxiliar : intervalo.getIntervalo()){
+						aux=Parser.parseConteudo(entity().getFolha(), content.value());
+						entity().getFolha().getMatriz().insereCell(auxiliar.getLine(), auxiliar.getColumn(), aux);
+				}
+			}
+		}
+		catch(Exception e){
+			throw new InvalidCellRange(posicao.value());
+		}
+	}
+}
+
+			
+			

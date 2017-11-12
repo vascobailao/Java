@@ -1,0 +1,20 @@
+package calc.core;
+import calc.core.*;
+import pt.utl.ist.po.ui.*;
+
+public class ADD extends FuncBin{
+	Argumento v1;
+	Argumento v2;
+	
+	public void ADD(Argumento arg1, Argumento arg2){
+		this.v1=arg1;
+		this.v2=arg2;
+	}
+	
+	
+	@Override
+	@SuppressWarnings("nls")
+	public int compute(){
+		return this.v1.getValue()+this.v2.getValue();
+		}
+}
